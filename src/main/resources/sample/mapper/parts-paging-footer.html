@@ -1,0 +1,40 @@
+<div th:fragment="paging-footer (${pageCondition})">
+  <table width="100%" border="0" >
+    <tr>
+      <td class="pageData" >
+          <div th:switch="${pageCondition.totalCount}">
+              <span th:case="${0}"><span th:text="${pageCondition.totalCount}"></span>件</span>
+              <div th:case="*">
+                  <span th:text="${pageCondition.totalCount}"></span>件中
+                  <span th:text="${pageCondition.startingPosition + 1}"></span> ～ <span th:text="${pageCondition.endPosition}"></span>件を表示
+              </div>
+          </div>
+      </td>
+      <td class="pageList" th:inline="text">
+          <div th:switch="${pageCondition.totalCount}">
+              <span th:case="${0}"></span>
+              <div th:case="*">
+                  <ul class="pager">
+                      <li th:switch="${pageCondition.pageNo}">
+                          <span th:case="${1}" >&lt;&nbsp;前へ</span>
+                          <span th:case="*"><a th:name="pageNo + ${pageCondition.pageNo - 1}" th:href="@{${pageURL}(pageNo=${pageCondition.pageNo - 1})}">&lt;&nbsp;前へ</a></span>
+                      </li>
+                      <li th:each="i,itrIndex : ${pageCondition.pageNumberList}" th:switch="${i}">
+                          <span th:case="${pageCondition.pageNo}" th:text="${i}" class="currentPageNo"></span>
+                          <span th:case="*" >
+                              <a th:name="pageNo + ${i}" th:href="@{${pageURL}(pageNo=${i})}">[[${i}]]</a>
+                          </span>
+                      </li>
+                      <li th:switch="${pageCondition.pageNo}">
+                          <span name="${pageNo + pageCondition.totalPage}" th:case="${pageCondition.totalPage}">次へ&nbsp;&gt;</span>
+                          <span th:case="*">
+                              <a th:name="pageNo + ${pageCondition.pageNo + 1}" th:href="@{${pageURL}(pageNo=${pageCondition.pageNo + 1})}">次へ&nbsp;&gt;</a>
+                          </span>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </td>
+    </tr>
+  </table>
+</div>

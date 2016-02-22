@@ -19,6 +19,10 @@ create table user_info (
   enabled           boolean not null
 );
 
+
+
+
+
 -- UserRoles ユーザーの権限を管理するテーブル
 create table user_roles (
   user_id            varchar(255),

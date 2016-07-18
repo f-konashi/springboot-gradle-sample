@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        System.out.println("aaaaa");
+        System.out.println("aaaaacccc");
         SpringApplication.run(Application.class, args);
     }
 }
